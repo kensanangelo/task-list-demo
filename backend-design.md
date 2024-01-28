@@ -6,8 +6,7 @@ API Calls:
 
 -  [GET `/tasks`](#get-tasks)
 -  [POST `/tasks`](#post-tasks)
--  [GET `/tasks/:id`](#get-tasks-id) (not implemented)
--  [GET `/tasks/:id/details`](#get-tasks-id-details)
+-  [API calls that may be implemented in the future](#future)
 
 ---
 
@@ -58,39 +57,12 @@ API Calls:
    	}
    ```
 
-<a id="get-tasks-id"></a>
+   --
 
--  GET `/tasks/:id` (not implemented)
+<a id="future"></a>
 
-   -  Response:
+## API calls that _may_ be implemented in the future (depending on required functionality)
 
-   ```
-   	{
-   		status: "success",
-   		data: {
-   			task: {
-   				id: number,
-   				name: string,
-   				due: string (ISO date string),
-   				priority: string ("High" | "Medium" | "Low")
-   			}
-   		}
-   	}
-   ```
-
-<a id="get-tasks-id-details"></a>
-
--  GET `/tasks/:id/details`
-   -  Response:
-   ```
-   	{
-   		status: "success",
-   		data: {
-   			task: {
-   				description: string
-   				assignee: number (id of assignee)
-   				status: string ("Not Started", "In Progress", "Completed")
-   			}
-   		}
-   	}
-   ```
+-  GET `/tasks/:id`: Get an individual task
+-  PATCH `/tasks/:id`: Update a task with things like status update, or name change
+-  GET `/tasks/:id/details`: Get more details about the task (if there is too much data for one request)

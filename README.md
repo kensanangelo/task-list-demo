@@ -1,4 +1,4 @@
-# task-list-demo
+# Task List Demo Project
 
 ## How to Run Locally
 
@@ -10,7 +10,7 @@
 
 ## Assumptions
 
--  We will be adding more task details later that will be too much to get all data in the initial list call, so split it into a separate /detailsAPI call from the initial list
+-  The task details are light enough to include in the initial fetch. If we are anticipating more data that may end up being too much for this request in the future, we can discuss adding a separate /details api call to fetch that on opening the task.
 
 ## Design Decisions
 
