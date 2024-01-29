@@ -1,6 +1,5 @@
-import { useEffect } from 'react';
 import { useTasksContext } from '../contexts/TaskContext';
-
+import SingleTask from '../common/SingleTask/SingleTask';
 const TaskList = () => {
 	const { tasks, isLoadingTasks } = useTasksContext();
 
@@ -11,7 +10,11 @@ const TaskList = () => {
 				{isLoadingTasks ? (
 					<p>Loading tasks...</p>
 				) : (
-					tasks.map((task) => <li key={task.id}>{task.name}</li>)
+					tasks.map((task) => (
+						<li key={task.id}>
+							<SingleTask task={task} />
+						</li>
+					))
 				)}
 			</ul>
 		</main>

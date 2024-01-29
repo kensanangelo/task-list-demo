@@ -25,8 +25,9 @@ export const TasksProvider = ({ children }: ProviderProps) => {
 	const [isLoadingTasks, setIsLoadingTasks] = useState<boolean>(false);
 
 	const fetchTasks = async () => {
+		await setIsLoadingTasks(true);
+
 		try {
-			setIsLoadingTasks(true);
 			const newTasks = await ApiService.getTasks();
 			setTasks(newTasks);
 		} catch (error) {
