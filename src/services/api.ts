@@ -1,22 +1,18 @@
 import { tasks as mockTasks } from '../mocks/apiResponses';
+import { Task } from '../types/Task';
 
 const ApiService = {
-	async listTasks() {
-		try {
-			const result = await Promise.resolve({
-				status: 'success',
-				data: { tasks: [mockTasks] },
-			});
+	async getTasks(): Promise<Task[]> {
+		const result = await Promise.resolve({
+			status: 'success',
+			data: { tasks: mockTasks },
+		});
 
-			if (result.status !== 'success') {
-				throw new Error('Error fetching tasks');
-			}
-
-			return result.data.tasks;
-		} catch (error) {
-			console.log(error);
-			return [];
+		if (result.status !== 'success') {
+			throw new Error('Error fetching tasks');
 		}
+
+		return result.data.tasks;
 	},
 
 	async postTask() {
@@ -30,3 +26,5 @@ const ApiService = {
 		}
 	},
 };
+
+export default ApiService;
