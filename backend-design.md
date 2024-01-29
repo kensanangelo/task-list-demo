@@ -27,7 +27,7 @@ API Calls:
    					due: string (ISO date string),
    					priority: "High" | "Medium" | "Low",
    					description: string,
-   					assignee: number (id of user)
+   					assignee: string (name of user)
    					status: string ("Not Started"|"In Progress"|"Completed")
    				}
    			]
@@ -46,7 +46,7 @@ API Calls:
    		name: string,
    		description: string,
    		dueDate: string (ISO date string),
-   		assignee: number (id of assignee)
+   		assignee: string (name of assignee)
    		priority: string ("High" | "Medium" | "Low")
    	}
    ```

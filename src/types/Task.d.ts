@@ -7,6 +7,6 @@ export interface Task {
 	due: string; // ISO datestring
 	priority: Priority;
 	description: string;
-	assignee: number; // User ID
+	assignee: string; // User name
 	status: Status;
 }
