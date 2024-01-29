@@ -25,7 +25,10 @@ API Calls:
    					id: number,
    					name: string,
    					due: string (ISO date string),
-   					priority: "High" | "Medium" | "Low"
+   					priority: "High" | "Medium" | "Low",
+   					description: string,
+   					assignee: number (id of user)
+   					status: string ("Not Started"|"In Progress"|"Completed")
    				}
    			]
    		}
