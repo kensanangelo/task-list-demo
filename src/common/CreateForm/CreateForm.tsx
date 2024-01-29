@@ -1,18 +1,21 @@
-import { useState } from 'react';
+import { useState, FormEvent } from 'react';
 import { useTasksContext } from '../../contexts/TaskContext';
 import { Task } from '../../types/Task';
+import { useFeedbackContext } from '../../contexts/FeedbackContext';
 
 const emptyFormState = {
 	name: '',
 	description: '',
 	due: '',
 	assignee: '',
-	priority: '',
+	priority: 'Low',
 };
 
 const CreateForm = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [formState, setFormState] = useState(emptyFormState);
+
+	const { addFeedback } = useFeedbackContext();
 
 	const { createTask } = useTasksContext();
 
@@ -20,23 +23,36 @@ const CreateForm = () => {
 		setFormState({ ...formState, [key]: value });
 	};
 
-	const submitTask = () => {
+	const submitTask = async (e: FormEvent<HTMLFormElement>) => {
+		e.preventDefault();
+
 		if (
 			!formState.name ||
 			!formState.due ||
 			!formState.assignee ||
 			!formState.priority
 		) {
-			// TODO: Show error message
+			addFeedback('Please complete all required fields', 'error');
 			return;
 		}
 
-		createTask(formState as Partial<Task>);
+		try {
+			await createTask(formState as Partial<Task>);
+			closeForm();
+			addFeedback('Task created successfully!', 'success');
+			window.scrollTo({ top: 0, behavior: 'smooth' });
+		} catch (error) {
+			addFeedback('Something went wrong. Could not create task', 'error');
+		}
 	};
 
-	const cancel = () => {
-		setIsOpen(false);
+	const clearFormState = () => {
 		setFormState(emptyFormState);
+	};
+
+	const closeForm = () => {
+		setIsOpen(false);
+		clearFormState();
 	};
 
 	if (!isOpen) {
@@ -45,7 +61,7 @@ const CreateForm = () => {
 
 	return (
 		<form onSubmit={submitTask}>
-			<button type='button' onClick={cancel}>
+			<button type='button' onClick={closeForm}>
 				Cancel
 			</button>
 			<h2>CreateForm</h2>
@@ -57,6 +73,7 @@ const CreateForm = () => {
 						id='name'
 						value={formState.name}
 						onChange={(e) => updateFormState('name', e.target.value)}
+						required
 					/>
 				</li>
 				<li>
@@ -77,6 +94,7 @@ const CreateForm = () => {
 						id='due'
 						value={formState.due}
 						onChange={(e) => updateFormState('due', e.target.value)}
+						required
 					/>
 				</li>
 				<li>
@@ -86,6 +104,7 @@ const CreateForm = () => {
 						id='assignee'
 						value={formState.assignee}
 						onChange={(e) => updateFormState('assignee', e.target.value)}
+						required
 					/>
 				</li>
 				<li>
@@ -94,13 +113,11 @@ const CreateForm = () => {
 						id='priority'
 						value={formState.priority}
 						onChange={(e) => updateFormState('priority', e.target.value)}
+						required
 					>
-						<option value='' disabled selected>
-							Select priority
-						</option>
-						<option value='low'>Low</option>
-						<option value='medium'>Medium</option>
-						<option value='high'>High</option>
+						<option value='Low'>Low</option>
+						<option value='Medium'>Medium</option>
+						<option value='High'>High</option>
 					</select>
 				</li>
 			</ul>
