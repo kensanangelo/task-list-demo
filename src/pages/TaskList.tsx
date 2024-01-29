@@ -17,6 +17,7 @@ const TaskList = () => {
 					))
 				)}
 			</ul>
+			<CreateForm />
 		</main>
 	);
 };
