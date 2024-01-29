@@ -15,7 +15,7 @@ const ApiService = {
 		return result.data.tasks;
 	},
 
-	async postTask() {
+	async postTask(task: Partial<Task>) {
 		const result = await Promise.resolve({
 			status: 'success',
 			data: null,

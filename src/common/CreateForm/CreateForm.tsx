@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { useTasksContext } from '../../contexts/TaskContext';
+import { Task } from '../../types/Task';
 
 const emptyFormState = {
 	name: '',
@@ -12,6 +14,26 @@ const CreateForm = () => {
 	const [isOpen, setIsOpen] = useState(false);
 	const [formState, setFormState] = useState(emptyFormState);
 
+	const { createTask } = useTasksContext();
+
+	const updateFormState = (key: string, value: string) => {
+		setFormState({ ...formState, [key]: value });
+	};
+
+	const submitTask = () => {
+		if (
+			!formState.name ||
+			!formState.due ||
+			!formState.assignee ||
+			!formState.priority
+		) {
+			// TODO: Show error message
+			return;
+		}
+
+		createTask(formState as Partial<Task>);
+	};
+
 	const cancel = () => {
 		setIsOpen(false);
 		setFormState(emptyFormState);
@@ -22,7 +44,7 @@ const CreateForm = () => {
 	}
 
 	return (
-		<form onSubmit={() => {}}>
+		<form onSubmit={submitTask}>
 			<button type='button' onClick={cancel}>
 				Cancel
 			</button>
@@ -34,9 +56,7 @@ const CreateForm = () => {
 						type='text'
 						id='name'
 						value={formState.name}
-						onChange={(e) =>
-							setFormState({ ...formState, name: e.target.value })
-						}
+						onChange={(e) => updateFormState('name', e.target.value)}
 					/>
 				</li>
 				<li>
@@ -46,7 +66,7 @@ const CreateForm = () => {
 						id='description'
 						value={formState.description}
 						onChange={(e) =>
-							setFormState({ ...formState, description: e.target.value })
+							updateFormState('description', e.target.value)
 						}
 					/>
 				</li>
@@ -56,9 +76,7 @@ const CreateForm = () => {
 						type='datetime-local'
 						id='due'
 						value={formState.due}
-						onChange={(e) =>
-							setFormState({ ...formState, due: e.target.value })
-						}
+						onChange={(e) => updateFormState('due', e.target.value)}
 					/>
 				</li>
 				<li>
@@ -67,9 +85,7 @@ const CreateForm = () => {
 						type='text'
 						id='assignee'
 						value={formState.assignee}
-						onChange={(e) =>
-							setFormState({ ...formState, assignee: e.target.value })
-						}
+						onChange={(e) => updateFormState('assignee', e.target.value)}
 					/>
 				</li>
 				<li>
@@ -77,11 +93,11 @@ const CreateForm = () => {
 					<select
 						id='priority'
 						value={formState.priority}
-						onChange={(e) =>
-							setFormState({ ...formState, priority: e.target.value })
-						}
+						onChange={(e) => updateFormState('priority', e.target.value)}
 					>
-						<option value=''>Select priority</option>
+						<option value='' disabled selected>
+							Select priority
+						</option>
 						<option value='low'>Low</option>
 						<option value='medium'>Medium</option>
 						<option value='high'>High</option>

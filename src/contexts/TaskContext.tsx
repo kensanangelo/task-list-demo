@@ -10,12 +10,14 @@ interface ContextProps {
 	tasks: Task[];
 	isLoadingTasks: boolean;
 	fetchTasks: () => void;
+	createTask: (task: Partial<Task>) => void;
 }
 
 const defaultState = {
 	tasks: [],
 	isLoadingTasks: true,
 	fetchTasks: () => {},
+	createTask: () => {},
 };
 
 export const TasksContext = React.createContext<ContextProps>(defaultState);
@@ -38,6 +40,11 @@ export const TasksProvider = ({ children }: ProviderProps) => {
 		setIsLoadingTasks(false);
 	};
 
+	const createTask = async (task: Partial<Task>) => {
+		await ApiService.postTask(task);
+		fetchTasks();
+	};
+
 	// Fetches tasks initially when the site is started up
 	useEffect(() => {
 		fetchTasks();
@@ -47,6 +54,7 @@ export const TasksProvider = ({ children }: ProviderProps) => {
 		tasks,
 		isLoadingTasks,
 		fetchTasks,
+		createTask,
 	};
 
 	return (
