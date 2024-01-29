@@ -1,5 +1,5 @@
 import { tasks as mockTasks } from '../mocks/apiResponses';
-import { Task } from '../types/Task';
+import { Task, TaskForm, Status } from '../types/Task';
 
 const ApiService = {
 	async getTasks(): Promise<Task[]> {
@@ -15,7 +15,7 @@ const ApiService = {
 		return result.data.tasks;
 	},
 
-	async postTask(task: Partial<Task>) {
+	async postTask(task: TaskForm): Promise<Task> {
 		const result = await Promise.resolve({
 			status: 'success',
 			data: null,
@@ -24,6 +24,16 @@ const ApiService = {
 		if (result.status !== 'success') {
 			throw new Error('Error posting task');
 		}
+
+		// NOTE: In real life, we'd get the ID from the server
+		// but we are simulating it here
+		const newId = mockTasks[mockTasks.length - 1].id + 1;
+
+		return {
+			...task,
+			id: newId,
+			status: 'Not Started' as Status,
+		};
 	},
 };
 

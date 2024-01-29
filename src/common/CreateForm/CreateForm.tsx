@@ -1,6 +1,6 @@
 import { useState, FormEvent } from 'react';
 import { useTasksContext } from '../../contexts/TaskContext';
-import { Task } from '../../types/Task';
+import { TaskForm } from '../../types/Task';
 import { useFeedbackContext } from '../../contexts/FeedbackContext';
 
 const emptyFormState = {
@@ -37,7 +37,7 @@ const CreateForm = () => {
 		}
 
 		try {
-			await createTask(formState as Partial<Task>);
+			await createTask(formState as TaskForm);
 			closeForm();
 			addFeedback('Task created successfully!', 'success');
 			window.scrollTo({ top: 0, behavior: 'smooth' });

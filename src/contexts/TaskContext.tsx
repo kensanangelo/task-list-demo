@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { Task } from '../types/Task';
+import { Task, TaskForm } from '../types/Task';
 import ApiService from '../services/api';
 
 interface ProviderProps {
@@ -10,7 +10,7 @@ interface ContextProps {
 	tasks: Task[];
 	isLoadingTasks: boolean;
 	fetchTasks: () => void;
-	createTask: (task: Partial<Task>) => void;
+	createTask: (task: TaskForm) => void;
 }
 
 const defaultState = {
@@ -40,9 +40,9 @@ export const TasksProvider = ({ children }: ProviderProps) => {
 		setIsLoadingTasks(false);
 	};
 
-	const createTask = async (task: Partial<Task>) => {
-		await ApiService.postTask(task);
-		fetchTasks();
+	const createTask = async (task: TaskForm) => {
+		const newTask = await ApiService.postTask(task);
+		setTasks([...tasks, newTask]);
 	};
 
 	// Fetches tasks initially when the site is started up

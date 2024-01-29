@@ -10,3 +10,11 @@ export interface Task {
 	assignee: string; // User name
 	status: Status;
 }
+
+export interface TaskForm {
+	name: string;
+	due: string; // ISO datestring
+	priority: Priority;
+	description: string;
+	assignee: string; // User name
+}
