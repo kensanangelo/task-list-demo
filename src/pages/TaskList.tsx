@@ -1,11 +1,11 @@
 import { useTasksContext } from '../contexts/TaskContext';
 import SingleTask from '../common/SingleTask/SingleTask';
+import CreateForm from '../common/CreateForm/CreateForm';
 const TaskList = () => {
 	const { tasks, isLoadingTasks } = useTasksContext();
 
 	return (
 		<main>
-			<h1>Task List</h1>
 			<ul>
 				{isLoadingTasks ? (
 					<p>Loading tasks...</p>
