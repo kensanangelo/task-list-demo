@@ -1,11 +1,14 @@
 import './App.css';
+import { TasksProvider } from './contexts/TaskContext';
 import TaskList from './pages/TaskList';
 
 const App = () => {
 	return (
-		<div className='App'>
-			<TaskList />
-		</div>
+		<TasksProvider>
+			<div className='App'>
+				<TaskList />
+			</div>
+		</TasksProvider>
 	);
 };
 
