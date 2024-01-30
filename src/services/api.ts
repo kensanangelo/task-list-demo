@@ -26,8 +26,10 @@ const ApiService = {
 		}
 
 		// NOTE: In real life, we'd get the ID from the server
-		// but we are simulating it here
-		const newId = mockTasks[mockTasks.length - 1].id + 1;
+		// Here we're just generating a random number to replicate that
+		// In rare circumstances, this may cause a duplicate key warning
+		// but that would not occur in the real app
+		const newId = Math.floor(Math.random() * (9999 - 6)) + 6;
 
 		return {
 			...task,
