@@ -45,7 +45,7 @@ API Calls:
    	{
    		name: string,
    		description: string,
-   		dueDate: string (ISO date string),
+   		due: string (ISO date string),
    		assignee: string (name of assignee)
    		priority: string ("High" | "Medium" | "Low")
    	}
@@ -56,7 +56,17 @@ API Calls:
    ```
    	{
    		status: "success",
-   		data: null
+   		data: {
+   			task: {
+   					id: number,
+   					name: string,
+   					due: string (ISO date string),
+   					priority: "High" | "Medium" | "Low",
+   					description: string,
+   					assignee: string (name of user)
+   					status: string ("Not Started"|"In Progress"|"Completed")
+   				}
+   		}
    	}
    ```
 

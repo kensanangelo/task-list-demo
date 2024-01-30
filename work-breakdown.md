@@ -13,17 +13,16 @@
    -  Set up so that we have functionality to fetch task details and submit new task.
 -  Create Task List component
    -  Create the task list component that takes task list data and displays it in a list of SingleTask components
--  Single Task component
+-  Create Single Task component
    -  Create a dumb component that just displays a single task in the task list
--  Task Details component
-   -  When the Single Task component is clicked, open the TaskDetails section and display that data
+-  Add MoreSection to SingleTask
+   -  When the Single Task component is clicked, open the 'More' section and display that data
 -  Create toast message system
    -  We need a toast system. Set up the global component, and the context/hook so that other components can call it
 -  Task Creation Form component
    -  Add the form to the page with all it's fields. Do not add submit functionality as that will be handled in another ticket.
    -  Handle form validation:
       -  description is not required (leave as empty string if so)
-      -  assignee is an id to be entered
       -  priority is an enum
    -  Display toast message if there is an input validation failure
 -  Form submission

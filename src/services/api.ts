@@ -1,6 +1,8 @@
 import { tasks as mockTasks } from '../mocks/apiResponses';
 import { Task, TaskForm, Status } from '../types/Task';
 
+// This is to simulate API calls, while actually using mock data
+// Would be replaced in real app
 const ApiService = {
 	async getTasks(): Promise<Task[]> {
 		const result = await Promise.resolve({
