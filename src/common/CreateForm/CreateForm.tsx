@@ -3,6 +3,7 @@ import { useTasksContext } from '../../contexts/TaskContext';
 import { TaskForm } from '../../types/Task';
 import { useFeedbackContext } from '../../contexts/FeedbackContext';
 import Button from '../Button';
+import styled from 'styled-components';
 
 const emptyFormState = {
 	name: '',
@@ -57,15 +58,16 @@ const CreateForm = () => {
 	};
 
 	if (!isOpen) {
-		return <Button onClick={() => setIsOpen(true)}>Create Task</Button>;
+		return (
+			<Button size='large' onClick={() => setIsOpen(true)}>
+				Create Task
+			</Button>
+		);
 	}
 
 	return (
 		<form onSubmit={submitTask}>
-			<Button type='button' onClick={closeForm}>
-				Cancel
-			</Button>
-			<h2>CreateForm</h2>
+			<h2>Create a new task</h2>
 			<ul>
 				<li>
 					<label htmlFor='name'>Name*</label>
@@ -122,9 +124,21 @@ const CreateForm = () => {
 					</select>
 				</li>
 			</ul>
-			<Button type='submit'>Create</Button>
+			<ButtonRow>
+				<Button size='medium' type='button' onClick={closeForm}>
+					Cancel
+				</Button>
+				<Button size='medium' color='primary' type='submit'>
+					Create
+				</Button>
+			</ButtonRow>
 		</form>
 	);
 };
+
+const ButtonRow = styled.div`
+	display: flex;
+	gap: 1rem;
+`;
 
 export default CreateForm;
