@@ -7,8 +7,8 @@ const FeedbackBanner = () => {
 
 	const { feedback } = useFeedbackContext();
 
+	// If we get a new message, open the banner
 	useEffect(() => {
-		// If we get a new message, open the banner
 		if (!feedback.message) return;
 
 		setIsOpen(true);
@@ -35,10 +35,14 @@ const Banner = styled.div<{ type: FeedbackType }>`
 
 	${(props) =>
 		props.type === 'success'
-			? `background-color: #e6f0d3;
-			border: 1px solid #bdde7f;`
-			: `background-color: #f5c9b3;
-			border: 1px solid #ff9966`}
+			? `
+				background-color: #e6f0d3;
+				border: 1px solid #bdde7f;
+			`
+			: `
+				background-color: #f5c9b3;
+				border: 1px solid #ff9966
+			`}
 `;
 
 const Message = styled.p`

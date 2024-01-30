@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { Priority, Task } from '../../types/Task';
 import MoreSection from './MoreSection';
-import styled from 'styled-components';
+import styled, { css } from 'styled-components';
 import { formatIsoDateString } from '../../utils/dateTime';
 
 interface Props {
@@ -88,13 +88,17 @@ const PriorityComponent = styled.p<{ level: Priority }>`
 
 	${(props) =>
 		props.level === 'High'
-			? `
-	background-color: #cc3300;
-	color: #fff;
-	`
+			? css`
+					background-color: #cc3300;
+					color: #fff;
+			  `
 			: props.level === 'Medium'
-			? `background-color: #ffcc00;`
-			: 'background-color: #99cc33'}
+			? css`
+					background-color: #ffcc00;
+			  `
+			: css`
+					background-color: #99cc33;
+			  `}
 `;
 
 export default SingleTask;

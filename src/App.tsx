@@ -6,15 +6,15 @@ import { FeedbackProvider } from './contexts/FeedbackContext';
 
 const App = () => {
 	return (
-		<TasksProvider>
-			<FeedbackProvider>
+		<FeedbackProvider>
+			<TasksProvider>
 				<div className='App'>
 					<FeedbackBanner />
 					<Header />
 					<TaskList />
 				</div>
-			</FeedbackProvider>
-		</TasksProvider>
+			</TasksProvider>
+		</FeedbackProvider>
 	);
 };
 
