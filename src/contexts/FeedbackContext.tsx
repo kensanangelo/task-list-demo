@@ -1,10 +1,10 @@
 import React, { useState, useContext } from 'react';
 
-type Type = 'success' | 'error';
+export type FeedbackType = 'success' | 'error';
 
 interface Message {
 	message: string;
-	type: Type;
+	type: FeedbackType;
 }
 
 interface ProviderProps {
@@ -13,13 +13,13 @@ interface ProviderProps {
 
 interface ContextProps {
 	feedback: Message;
-	addFeedback: (message: string, type: Type) => void;
+	addFeedback: (message: string, type: FeedbackType) => void;
 }
 
 const defaultState = {
 	feedback: {
 		message: '',
-		type: 'error' as Type,
+		type: 'error' as FeedbackType,
 	},
 	addFeedback: () => {},
 };
@@ -32,7 +32,7 @@ export const FeedbackProvider = ({ children }: ProviderProps) => {
 		type: 'error',
 	});
 
-	const addFeedback = async (message: string, type: Type) => {
+	const addFeedback = async (message: string, type: FeedbackType) => {
 		setFeedback({ message, type });
 	};
 
