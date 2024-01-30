@@ -90,7 +90,7 @@ const CreateForm = () => {
 			<InputGroup>
 				<Label htmlFor='due'>Due Date*</Label>
 				<Input
-					type='datetime-local'
+					type='date'
 					id='due'
 					value={formState.due}
 					onChange={(e) => updateFormState('due', e.target.value)}

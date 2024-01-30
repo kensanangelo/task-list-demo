@@ -16,7 +16,7 @@ const SingleTask = ({ task }: Props) => {
 				<Name>{task.name}</Name>
 				<InfoCol>
 					<DueDate>
-						Due: {new Date(task.due).toLocaleString('en-us')}
+						Due: {new Date(task.due).toLocaleDateString('en-us')}
 					</DueDate>
 					<PriorityComponent level={task.priority}>
 						{task.priority}
