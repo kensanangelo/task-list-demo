@@ -2,6 +2,7 @@ import { useState, FormEvent } from 'react';
 import { useTasksContext } from '../../contexts/TaskContext';
 import { TaskForm } from '../../types/Task';
 import { useFeedbackContext } from '../../contexts/FeedbackContext';
+import Button from '../Button';
 
 const emptyFormState = {
 	name: '',
@@ -56,14 +57,14 @@ const CreateForm = () => {
 	};
 
 	if (!isOpen) {
-		return <button onClick={() => setIsOpen(true)}>Create Task</button>;
+		return <Button onClick={() => setIsOpen(true)}>Create Task</Button>;
 	}
 
 	return (
 		<form onSubmit={submitTask}>
-			<button type='button' onClick={closeForm}>
+			<Button type='button' onClick={closeForm}>
 				Cancel
-			</button>
+			</Button>
 			<h2>CreateForm</h2>
 			<ul>
 				<li>
@@ -121,7 +122,7 @@ const CreateForm = () => {
 					</select>
 				</li>
 			</ul>
-			<button type='submit'>Create</button>
+			<Button type='submit'>Create</Button>
 		</form>
 	);
 };

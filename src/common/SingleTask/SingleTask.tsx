@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { Task } from '../../types/Task';
 import MoreSection from './MoreSection';
+import styled from 'styled-components';
 
 interface Props {
 	task: Task;
@@ -8,8 +9,9 @@ interface Props {
 
 const SingleTask = ({ task }: Props) => {
 	const [showMore, setShowMore] = useState<boolean>(false);
+
 	return (
-		<button onClick={() => setShowMore(!showMore)}>
+		<MainContainer onClick={() => setShowMore(!showMore)}>
 			<h3>{task.name}</h3>
 			<p>{new Date(task.due).toLocaleString('en-us')}</p>
 			<p>{task.priority}</p>
@@ -20,8 +22,12 @@ const SingleTask = ({ task }: Props) => {
 					status={task.status}
 				/>
 			)}
-		</button>
+		</MainContainer>
 	);
 };
+
+const MainContainer = styled.button`
+	display: flex;
+`;
 
 export default SingleTask;
