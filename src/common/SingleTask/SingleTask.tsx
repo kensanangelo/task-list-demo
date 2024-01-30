@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { Priority, Task } from '../../types/Task';
 import MoreSection from './MoreSection';
 import styled from 'styled-components';
+import { formatIsoDateString } from '../../utils/dateTime';
 
 interface Props {
 	task: Task;
@@ -15,9 +16,7 @@ const SingleTask = ({ task }: Props) => {
 			<Row>
 				<Name>{task.name}</Name>
 				<InfoCol>
-					<DueDate>
-						Due: {new Date(task.due).toLocaleDateString('en-us')}
-					</DueDate>
+					<DueDate>Due: {formatIsoDateString(task.due)}</DueDate>
 					<PriorityComponent level={task.priority}>
 						{task.priority}
 					</PriorityComponent>
