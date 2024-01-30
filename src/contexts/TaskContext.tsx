@@ -1,6 +1,7 @@
 import React, { useState, useContext, useEffect } from 'react';
 import { Task, TaskForm } from '../types/Task';
 import ApiService from '../services/api';
+import { useFeedbackContext } from './FeedbackContext';
 
 interface ProviderProps {
 	children: React.ReactNode;
@@ -26,6 +27,8 @@ export const TasksProvider = ({ children }: ProviderProps) => {
 	const [tasks, setTasks] = useState<Task[]>([]);
 	const [isLoadingTasks, setIsLoadingTasks] = useState<boolean>(false);
 
+	const { addFeedback } = useFeedbackContext();
+
 	const fetchTasks = async () => {
 		await setIsLoadingTasks(true);
 
@@ -33,7 +36,7 @@ export const TasksProvider = ({ children }: ProviderProps) => {
 			const newTasks = await ApiService.getTasks();
 			setTasks(newTasks);
 		} catch (error) {
-			console.error(error);
+			addFeedback('There was a problem fetching your tasks', 'error');
 			setTasks([]);
 		}
 
@@ -48,6 +51,7 @@ export const TasksProvider = ({ children }: ProviderProps) => {
 	// Fetches tasks initially when the site is started up
 	useEffect(() => {
 		fetchTasks();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const value = {
