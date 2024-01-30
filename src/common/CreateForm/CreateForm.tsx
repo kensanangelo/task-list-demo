@@ -66,64 +66,60 @@ const CreateForm = () => {
 	}
 
 	return (
-		<form onSubmit={submitTask}>
-			<h2>Create a new task</h2>
-			<ul>
-				<li>
-					<label htmlFor='name'>Name*</label>
-					<input
-						type='text'
-						id='name'
-						value={formState.name}
-						onChange={(e) => updateFormState('name', e.target.value)}
-						required
-					/>
-				</li>
-				<li>
-					<label htmlFor='description'>Description</label>
-					<input
-						type='text'
-						id='description'
-						value={formState.description}
-						onChange={(e) =>
-							updateFormState('description', e.target.value)
-						}
-					/>
-				</li>
-				<li>
-					<label htmlFor='due'>Due Date*</label>
-					<input
-						type='datetime-local'
-						id='due'
-						value={formState.due}
-						onChange={(e) => updateFormState('due', e.target.value)}
-						required
-					/>
-				</li>
-				<li>
-					<label htmlFor='assignee'>Assignee*</label>
-					<input
-						type='text'
-						id='assignee'
-						value={formState.assignee}
-						onChange={(e) => updateFormState('assignee', e.target.value)}
-						required
-					/>
-				</li>
-				<li>
-					<label htmlFor='priority'>Priority*</label>
-					<select
-						id='priority'
-						value={formState.priority}
-						onChange={(e) => updateFormState('priority', e.target.value)}
-						required
-					>
-						<option value='Low'>Low</option>
-						<option value='Medium'>Medium</option>
-						<option value='High'>High</option>
-					</select>
-				</li>
-			</ul>
+		<Form onSubmit={submitTask}>
+			<Title>Create a new task</Title>
+			<InputGroup>
+				<Label htmlFor='name'>Name*</Label>
+				<Input
+					type='text'
+					id='name'
+					value={formState.name}
+					onChange={(e) => updateFormState('name', e.target.value)}
+					required
+				/>
+			</InputGroup>
+			<InputGroup>
+				<Label htmlFor='description'>Description</Label>
+				<Input
+					type='text'
+					id='description'
+					value={formState.description}
+					onChange={(e) => updateFormState('description', e.target.value)}
+				/>
+			</InputGroup>
+			<InputGroup>
+				<Label htmlFor='due'>Due Date*</Label>
+				<Input
+					type='datetime-local'
+					id='due'
+					value={formState.due}
+					onChange={(e) => updateFormState('due', e.target.value)}
+					required
+				/>
+			</InputGroup>
+			<InputGroup>
+				<Label htmlFor='assignee'>Assignee*</Label>
+				<Input
+					type='text'
+					id='assignee'
+					value={formState.assignee}
+					onChange={(e) => updateFormState('assignee', e.target.value)}
+					required
+				/>
+			</InputGroup>
+			<InputGroup>
+				<Label htmlFor='priority'>Priority*</Label>
+				<Dropdown
+					id='priority'
+					value={formState.priority}
+					onChange={(e) => updateFormState('priority', e.target.value)}
+					required
+				>
+					<option value='Low'>Low</option>
+					<option value='Medium'>Medium</option>
+					<option value='High'>High</option>
+				</Dropdown>
+			</InputGroup>
 			<ButtonRow>
 				<Button size='medium' type='button' onClick={closeForm}>
 					Cancel
@@ -132,13 +128,52 @@ const CreateForm = () => {
 					Create
 				</Button>
 			</ButtonRow>
-		</form>
+		</Form>
 	);
 };
 
+const Form = styled.form`
+	display: flex;
+	flex-direction: column;
+	gap: 0.5rem;
+`;
+
+const Title = styled.h2`
+	margin: 0;
+	margin-bottom: 0.5rem;
+
+	font-family: 'Playfair Display', serif;
+	font-size: 1.4rem;
+`;
+
+const InputGroup = styled.div`
+	display: flex;
+	flex-direction: column;
+	gap: 0.2rem;
+`;
+
+const Label = styled.label`
+	font-size: 0.8rem;
+`;
+
+const Input = styled.input`
+	padding: 0.3rem;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+`;
+
+const Dropdown = styled.select`
+	padding: 0.3rem;
+	background-color: #fff;
+	border: 1px solid #ccc;
+	border-radius: 3px;
+`;
+
 const ButtonRow = styled.div`
 	display: flex;
-	gap: 1rem;
+	gap: 0.5rem;
+
+	margin-top: 0.8rem;
 `;
 
 export default CreateForm;
