@@ -29,6 +29,10 @@ export default TaskList;
 
 const Main = styled.main`
 	display: flex;
+	gap: 1rem;
+
+	padding: 1rem;
+	padding-top: 0;
 
 	@media only screen and (max-width: 800px) {
 		flex-direction: column;
@@ -41,16 +45,14 @@ const List = styled.ul`
 
 	margin: 0 auto;
 	flex: 2;
+	width: 100%;
+
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
 `;
 
-const ListItem = styled.li`
-	margin-bottom: 1rem;
-	border-top: 1px solid #ccc;
-
-	&:last-child {
-		border-bottom: 1px solid #ccc;
-	}
-`;
+const ListItem = styled.li``;
 
 const FormCol = styled.div`
 	flex: 1;

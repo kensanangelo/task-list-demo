@@ -33,7 +33,7 @@ export const tasks: Task[] = [
 		name: 'Task 4',
 		due: '2020-01-01T00:00:00.000Z',
 		priority: 'High',
-		description: 'This is a task',
+		description: '',
 		assignee: 'Bob',
 		status: 'Not Started',
 	},
