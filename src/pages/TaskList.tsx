@@ -33,6 +33,7 @@ const Main = styled.main`
 
 	padding: 1rem;
 	padding-top: 0;
+	margin-bottom: 2rem;
 
 	@media only screen and (max-width: 800px) {
 		flex-direction: column;
